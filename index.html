@@ -25,7 +25,7 @@
                     <label for="input-temperature">Celcius (&deg;C) : </label>
                     <!-- <p>Celcius (&deg;C) : </p> -->
     
-                    <input type="number" id="input-temperature"></input>
+                    <input id="input-temperature" type="number"></input>
     
                     <div class="form-btn-group">
                         <button class="form-btn form-btn-submit"><span>&rarrhk;</span> Konversi</button>
@@ -40,40 +40,67 @@
             <!-- result -->
             <section id="result">
                 <h4 class="heading-colr">Hasil</h4>
-                <div class="result">
+               
+                <!-- short answer -->
+                <div class="result-short">
                     <p>Farenheit (&deg;F) : </p>
-                    <div></div>
+                    <div>Hasil akan ditampilkan setelah tombol konversi ditekan</div>
                 </div>
     
                 <!-- calculation -->
-                <div class="calculation">
+                <div class="result-calc">
                     <p>Cara Kalkulasi : </p>
-                    <div></div>
-                    <a href="">Fahrenheit ke Celcius</a>
+                    <div>Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan</div>
                 </div>
+                
+                <a href="">Fahrenheit ke Celcius</a>
             </section>
             
             <!--calculation detail -->
             <section id="detail" class="calc-detail">
-                <h4 class="heading-colr">Cara Konversi Celcius (&deg;C) ke Farenheit (&deg;F)</h4>
+                <div class="detail-celcius">
+                    <h4 class="heading-colr">Cara Konversi Celcius (&deg;C) ke Farenheit (&deg;F)</h4>
     
-                <article>
-                    <p>Suhu <span class="temper-style">S</span> dalam derajat Farenheit (&deg;F) sama dengan suhu S dalam derajat Celcius (&deg;C) kali 9/5 tambah 32</p>
-    
-                    <p>
-                        <span class="temper-style">S</span><sub>(&deg;F)</sub>
-                        =
-                        (<span class="temper-style">S</span><sub>(&deg;C)</sub>
-                        &times; 9/5) + 32
-    
-                        <span>atau</span>
-    
-                        <span class="temper-style">S</span><sub>(&deg;F)</sub>
-                        =
-                        (<span class="temper-style">S</span><sub>(&deg;C)</sub>
-                        &times; 1,8) + 32
-                    </p>
-                </article>
+                    <article>
+                        <p>Suhu <span class="temper-style">S</span> dalam derajat Farenheit (&deg;F) sama dengan suhu S dalam derajat Celcius (&deg;C) kali 9/5 tambah 32</p>
+        
+                        <p>
+                            <span class="temper-style">S</span><sub>(&deg;F)</sub>
+                            =
+                            (<span class="temper-style">S</span><sub>(&deg;C)</sub>
+                            &times; 9/5) + 32
+        
+                            <span>atau</span>
+        
+                            <span class="temper-style">S</span><sub>(&deg;F)</sub>
+                            =
+                            (<span class="temper-style">S</span><sub>(&deg;C)</sub>
+                            &times; 1,8) + 32
+                        </p>
+                    </article>
+                </div>
+
+                <div class="detail-farenheit">
+                    <h4 class="heading-colr">Cara Konversi Farenheit (&deg;F) ke Celcius (&deg;C)</h4>
+
+                    <article>
+                        <p>Suhu <span class="temper-style">S</span> dalam derajat Farenheit (&deg;F) sama dengan suhu S dalam derajat Celcius (&deg;C) kali 9/5 tambah 32</p>
+        
+                        <p>
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub>
+                            =
+                            (<span class="temper-style">S</span><sub>(&deg;F)</sub>
+                            &times; − 32) × (5/9)
+                            
+                            <span>atau</span>
+                            
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub>
+                            =
+                            (<span class="temper-style">S</span><sub>(&deg;F)</sub>
+                            &times; − 32) × 0.555556
+                        </p>
+                    </article>
+                </div>
             </section>
         </main>
     
