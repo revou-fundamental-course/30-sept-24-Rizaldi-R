@@ -77,6 +77,19 @@ h4 {
     border: 1px solid #C2C2C2;
 }
 
+#result div {
+    margin-bottom: 2rem;
+}
+
+#result div p {
+    text-wrap: nowrap;
+    margin: 0.5rem 0;
+}
+
+#result div div {
+    font-weight: 500;
+}
+
 .temper-style {
     font-family: math;
     font-size: 20px;
@@ -158,12 +171,16 @@ h4 {
     background-color: #d7d7d7;
 }
 
-.calculation div {
+.result-calc div {
     height: 100px;
 }
 
 .calc-detail {
     border-bottom: none;
+}
+
+.detail-farenheit {
+    display: none;
 }
 
 nav {
@@ -187,6 +204,7 @@ nav div {
 }
 
 .circle {
+    cursor: pointer;
     position: absolute;
     top: 11rem;
     height: 60px;
