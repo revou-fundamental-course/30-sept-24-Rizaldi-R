@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
     --bsc-margin: 0.4rem;
@@ -9,9 +10,9 @@
 }
 
 html {
-    font-family: "Roboto", sans-serif;
+    font-family: "poppins", sans-serif;
     font-size: 14px;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.1px;
     line-height: 1.6rem;
     text-align: justify;
     color: #5C5C5C;
@@ -23,7 +24,6 @@ body {
 }
 
 main {
-    /* TODO - EDIT THE WIDTH */
     max-width: 500px;
     border-right: var(--main-content-border);
 }
@@ -67,6 +67,18 @@ h4 {
     margin-bottom: 1.5rem;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    border: #B4B4B4 solid 1px;
+    font-weight: normal;
+    text-align: left;
+    padding: var(--bsc-margin);
+}
+
 #input-temperature {
     all: unset;
     padding: 0px 0.2rem;
@@ -76,10 +88,6 @@ h4 {
     background-color: #EAEAEA;
     border: 1px solid #C2C2C2;
 }
-
-/* #result div {
-    margin-bottom: 2rem;
-} */
 
 #result div p {
     text-wrap: nowrap;
