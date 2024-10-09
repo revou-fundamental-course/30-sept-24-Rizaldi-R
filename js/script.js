@@ -15,10 +15,21 @@
 // todo validasi ->
 // > display invalid di html dg manipulasi styling
 
+// todo temp tipe lain ->
+// > listen to select element input and simpan tipe temp nya
+// > listen to select element result and simpan tipe temp nya
+// > calculation return array that can be used for to show cara kalkulasi
+// > dropdown yg result mengclean hasilnya
+
+// todo tombol reset ->
+// reset hasilnya juga
+
+// todo perbaiki tombol tukar -> 
+// 
+
 // bug ->
-// > button submit tiba2 scroll kebwh ketika diklik dan reload sendiri -> button inside form akan otomatis reload sendiri
+// > button submit reload sendiri -> button inside form akan otomatis reload sendiri
 // > Add type="button" to the button, the default value of type for a button is submit
-// pake enter juga mereload page
 
 let inputElem = document.querySelector("#input-temperature");
 let submitButton = document.querySelector(".form-btn-submit");
@@ -29,25 +40,38 @@ let tukarButton = document.querySelector(".form-btn-tukar");
 let resetButton = document.querySelector(".form-btn-reset");
 let inputLabel = document.querySelector(".from-convert label");
 let resultLabel = document.querySelector(".result-short p");
-// let calcDetailDiv = document.querySelector("");
 
 let validationText = document.querySelector(".validation");
 
-let temperType = "C";
+let dropdwnInput = document.querySelector("#temper-input");
+let dropdwnResult = document.querySelector("#temper-result");
+
+let temperTypeInput = "C";
+let temperTypeResult = "F";
 
 // -------- event listener --------
 
-submitButton.addEventListener('click', function () {
-    submitFunc();
+dropdwnInput.addEventListener('change', function () {
+    temperTypeInput = dropdwnInput.value;
+    submitValidAndShow();
 })
 
-tukarButton.addEventListener("click", function () {
-    temperType = resultLabel.textContent.charAt(0);
-    labelSwitcher(temperType);
-    
-    console.log(temperType)
-    submitFunc();
+dropdwnResult.addEventListener('change', function () {
+    temperTypeResult = dropdwnResult.value;
+    submitValidAndShow();
 })
+
+submitButton.addEventListener('click', function () {
+    submitValidAndShow();
+})
+
+// tukarButton.addEventListener("click", function () {
+//     temperTypeInput = resultLabel.textContent.charAt(0);
+//     labelSwitcher(temperTypeInput);
+    
+//     console.log(temperTypeInput)
+//     submitValidAndShow();
+// })
 
 resetButton.addEventListener("click", function() {
     inputElem.value = ""
@@ -55,39 +79,90 @@ resetButton.addEventListener("click", function() {
 
 // -------- function --------
 
-let submitFunc = () => {
+let submitValidAndShow = () => {
     if (inputElem.value) {
         let userValue = inputElem.value;
-        let result = calculation(userValue, temperType);
+        let result = calculation(userValue, temperTypeInput, temperTypeResult);
+        let shortResult = result.shortRes
+        let longResult = result.longRes
 
-        showResult(userValue, result, temperType);
+        console.log(longResult)
+        showResult(shortResult, longResult, temperTypeResult);
         validationText.style.display = "none";
     } else {
-        console.log("required to be filled");
         validationText.style.display = "block";
     }
 }
 
-let calculation = (inputVal, temType) => {
-    if (temType == "C"){ 
-        result = inputVal * (9 / 5) + 32;
+let calculation = (inputVal, temTypeIn, temTypeR) => {
+    const resultObj = {
+        shortRes: 0,
+        longRes: ""
+    };
+
+    let shortR = 0;
+    let longR = "";
+    let inpValFlt = parseFloat(inputVal);
+
+    if (temTypeIn == "C" && temTypeIn !== temTypeR){ 
+        if (temTypeR == "F") {
+            shortR = inpValFlt * (9/5) + 32;
+            longR = `${inpValFlt}&deg;${temTypeIn} * (9 / 5) + 32 = ${shortR}&deg;${temTypeR}`
+        } else if (temTypeR == "K") {
+            shortR = inpValFlt + 273.15;
+            longR = `${inpValFlt}&deg;${temTypeIn} + 273.15 = ${shortR}&deg;${temTypeR}`
+        } else {
+            shortR = (inpValFlt * (9/5)) + 491.67;
+            longR = `${inpValFlt}&deg;${temTypeIn} * (9/5)) + 491.67 = ${shortR}&deg;${temTypeR}`
+        }
+    } else if (temTypeIn == "F" && temTypeIn !== temTypeR) {
+        if (temTypeR == "C") {
+            shortR = (inpValFlt - 32) * (5/9);
+            longR = `(${inpValFlt}&deg;${temTypeIn} - 32) * (5/9) = ${shortR}&deg;${temTypeR}`
+        } else if (temTypeR == "K") {
+            shortR = (inpValFlt + 459.67) * (5/9);
+            longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67) * (5/9) = ${shortR}&deg;${temTypeR}`
+        } else {
+            shortR = inpValFlt + 459.67;
+            longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67 = ${shortR}&deg;${temTypeR}`
+        }
+    } else if (temTypeIn == "K" && temTypeIn !== temTypeR) { 
+        if (temTypeR == "C") {
+            shortR = inpValFlt - 273.15;
+            longR = `${inpValFlt}&deg;${temTypeIn} - 273.15 = ${shortR}&deg;${temTypeR}`
+        } else if (temTypeR == "F") {
+            shortR = (inpValFlt * (9/5)) - 459.67;
+            longR = `(${inpValFlt}&deg;${temTypeIn} * (9/5)) - 459.67 = ${shortR}&deg;${temTypeR}`
+        } else {
+            shortR = inpValFlt * (9/5);
+            longR = `${inpValFlt}&deg;${temTypeIn} * (9/5) = ${shortR}&deg;${temTypeR}`
+        }
+    } else if (temTypeIn == "R" && temTypeIn !== temTypeR) {
+        if (temTypeR == "C") {
+            shortR = (inpValFlt - 491.67) * (5/9);
+            longR = `(${inpValFlt}&deg;${temTypeIn} - 491.67) * (5/9) = ${shortR}&deg;${temTypeR}`
+        } else if (temTypeR == "F") {
+            shortR = inpValFlt - 459.67;
+            longR = `${inpValFlt}&deg;${temTypeIn} - 459.67 = ${shortR}&deg;${temTypeR}`
+        } else {
+            shortR = inpValFlt * (5/9);
+            longR = `${inpValFlt}&deg;${temTypeIn} * (5/9) = ${shortR}&deg;${temTypeR}`
+        }
     } else {
-        result = (inputVal - 32) * (5/9);
+        resultObj.shortRes = inpValFlt;
+        resultObj.longRes = `${inpValFlt}&deg;${temTypeIn} = ${inpValFlt}&deg;${temTypeR}`;
+        return resultObj;
     }
-    
-    // console.log(Math.round(result * 1000) / 1000);
-    return Math.round(result * 10000) / 10000;
+
+    resultObj.shortRes = Math.round(shortR * 10000) / 10000;
+    resultObj.longRes = longR
+
+    return resultObj;
 }
 
-let showResult = (UserVal, resultVal, temType) => {
-    if (temType == "C"){ 
-        shortResultDiv.innerHTML = `${resultVal}&deg;F`;
-        calcResultDiv.innerHTML = `${UserVal}&deg;C * (9 / 5) + 32 = ${resultVal}&deg;F`;
-    } else {
-        shortResultDiv.innerHTML = `${resultVal}&deg;C`;
-        calcResultDiv.innerHTML = `${UserVal}&deg;F - 32) * (5/9) = ${resultVal}&deg;C`;
-    }
-
+let showResult = (shorResult, longResult, temTypeR) => {
+    shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeR}`;
+    calcResultDiv.innerHTML = longResult
 }
 
 let labelSwitcher = (temType) => {

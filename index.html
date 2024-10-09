@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kalkulator Konversi Suhu</title>
     <link rel="stylesheet" href="css\style.css">
 </head>
 <body class="text-colr">
@@ -22,9 +22,13 @@
     
                 <!-- user input -->
                 <form class="from-convert">
-                    <label for="input-temperature">Celcius (&deg;C) : </label>
-                    <!-- <label for="input-temperature" style="display: none;">Fahrenheit (&deg;C) : </label> -->
-                    <!-- <p>Celcius (&deg;C) : </p> -->
+                    <!-- <label for="input-temperature">Celcius (&deg;C) : </label> -->
+                    <select id="temper-input" name="temper-i" class="temper-drop">
+                        <option value="C">Celcius (&deg;C)</option>
+                        <option value="F">Fahrenheit (&deg;F)</option>
+                        <option value="K">Kelvin (&deg;K)</option>
+                        <option value="R">Rankine (&deg;R)</option>
+                      </select>
     
                     <input id="input-temperature" type="number"></input>
     
@@ -43,11 +47,19 @@
                 
             <!-- result -->
             <section id="result">
-                <h4 class="heading-colr margin-btm-md">Hasil Konversi</h4>
-               
+                <h4 class="heading-colr margin-btm-md">
+                    Hasil Konversi ke                 
+                    <select id="temper-result" name="temper-r" class="temper-drop">
+                        <option value="C">Celcius (&deg;C)</option>
+                        <option value="F" selected="selected">Fahrenheit (&deg;F)</option>
+                        <option value="K">Kelvin (&deg;K)</option>
+                        <option value="R">Rankine (&deg;R)</option>
+                    </select>
+                </h4> 
+                
                 <!-- short answer -->
                 <div class="result-short margin-btm-md">
-                    <p>Fahrenheit (&deg;F) : </p>
+                    <p>Hasil : </p>
                     <div>Hasil akan ditampilkan setelah tombol konversi ditekan</div>
                 </div>
     

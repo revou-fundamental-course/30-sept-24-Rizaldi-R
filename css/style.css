@@ -121,6 +121,16 @@ h4 {
     text-wrap: nowrap;
 }
 
+.temper-drop {
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    color: #5C5C5C;
+    border: #CDCDCD solid 1px;
+    background-color: #FFFCFC;
+    height: 1.6rem;
+    margin-right: var(--bsc-margin);
+}
+
 .form-btn-group {
     margin-left: var(--bsc-margin);
     width: 100%;
