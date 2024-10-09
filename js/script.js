@@ -1,39 +1,45 @@
-let inputElem = document.querySelector("#input-temperature");
-let submitButton = document.querySelector(".form-btn-submit");
-let shortResultDiv = document.querySelector(".result-short div");
-let longResultDiv = document.querySelector(".result-calc div");
+const formElem = document.querySelector(".form-convert")
+const inputElem = document.querySelector("#input-temperature");
+const submitButton = document.querySelector(".form-btn-submit");
+const shortResultDiv = document.querySelector(".result-short div");
+const longResultDiv = document.querySelector(".result-calc div");
 
-let tukarButton = document.querySelector(".form-btn-tukar");
-let resetButton = document.querySelector(".form-btn-reset");
+const tukarButton = document.querySelector(".form-btn-tukar");
+const resetButton = document.querySelector(".form-btn-reset");
 
-let validationText = document.querySelector(".validation");
+const validationText = document.querySelector(".validation");
 
-let dropdwnInput = document.querySelector("#temper-input");
-let dropdwnResult = document.querySelector("#temper-result");
+const dropdwnInput = document.querySelector("#temper-input");
+const dropdwnResult = document.querySelector("#temper-result");
 
 let temperTypeInput = "C";
 let temperTypeResult = "F";
 
 // -------- event listener --------
 
-dropdwnInput.addEventListener('change', function () {
+dropdwnInput.addEventListener("change", function () {
     temperTypeInput = dropdwnInput.value;
     submitValidAndShow();
 })
 
-dropdwnResult.addEventListener('change', function () {
+dropdwnResult.addEventListener("change", function () {
     temperTypeResult = dropdwnResult.value;
     submitValidAndShow();
 })
 
-submitButton.addEventListener('click', function () {
+formElem.addEventListener("submit", function (e) {
+    e.preventDefault();
+    submitValidAndShow();
+})
+
+submitButton.addEventListener("click", function () {
     submitValidAndShow();
 })
 
 resetButton.addEventListener("click", function() {
-    inputElem.value = ""
-    shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan"
-    longResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan"
+    inputElem.value = "";
+    shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan";
+    longResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan";
 })
 
 tukarButton.addEventListener("click", function () {
@@ -50,7 +56,6 @@ let submitValidAndShow = () => {
         let shortResult = result.shortRes
         let longResult = result.longRes
 
-        console.log(longResult)
         showResult(shortResult, longResult, temperTypeResult);
         validationText.style.display = "none";
     } else {
