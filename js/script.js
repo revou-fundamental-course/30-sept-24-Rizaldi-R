@@ -75,6 +75,8 @@ submitButton.addEventListener('click', function () {
 
 resetButton.addEventListener("click", function() {
     inputElem.value = ""
+    shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan"
+    calcResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan"
 })
 
 // -------- function --------
