@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
@@ -6,13 +5,13 @@
     --main-content-border: #B4B4B4 solid 1px;
     --btn-height: 1.5rem;
     --large-padding: 50px;
-    --medium-padding: 30px
+    --medium-padding: 30px;
+    --warning-color: red;
 }
 
 html {
     font-family: "poppins", sans-serif;
     font-size: 14px;
-    letter-spacing: 0.1px;
     line-height: 1.6rem;
     text-align: justify;
     color: #5C5C5C;
@@ -23,10 +22,51 @@ body {
     margin: 0;
 }
 
+/* ------------- utils ------------- */
+
+.margin-btm-md {
+    margin-bottom: 2.6rem;
+}
+
+.font-weight-md {
+    font-weight: 500;
+}
+
+.temper-style {
+    font-family: math;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.temper-drop {
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    color: #5C5C5C;
+    border: #CDCDCD solid 1px;
+    background-color: #FFFCFC;
+    height: 1.6rem;
+    margin-right: var(--bsc-margin);
+}
+
+/* ------------- containers ------------- */
+
 main {
     max-width: 500px;
     border-right: var(--main-content-border);
 }
+
+section {
+    padding: var(--large-padding) var(--large-padding) var(--large-padding) 0;
+    border-bottom: var(--main-content-border);
+}
+
+.container {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* ------------- links ------------- */
 
 a {
     color: blue;
@@ -40,6 +80,8 @@ nav a {
     display: block;
 }
 
+/* ------------- headers ------------- */
+
 header {
     padding-right: var(--large-padding);
     font-size: larger;
@@ -47,19 +89,12 @@ header {
     border-bottom: 3px double #B4B4B4;
 }
 
+.heading-colr {
+    color: #464646
+}
+
 h1 {
     line-height: 2.6rem;
-}
-
-section {
-    padding: var(--large-padding) var(--large-padding) var(--large-padding) 0;
-    border-bottom: var(--main-content-border);
-}
-
-footer {
-    font-size: 12px;
-    text-align: center;
-    color: #999999;
 }
 
 h4 {
@@ -67,17 +102,7 @@ h4 {
     margin-bottom: 1.5rem;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    border: #B4B4B4 solid 1px;
-    font-weight: normal;
-    text-align: left;
-    padding: var(--bsc-margin);
-}
+/* ------------- form content ------------- */
 
 #input-temperature {
     all: unset;
@@ -98,22 +123,6 @@ th {
     font-weight: 500;
 }
 
-.temper-style {
-    font-family: math;
-    font-size: 20px;
-    font-style: italic;
-}
-
-.heading-colr {
-    color: #464646
-}
-
-.container {
-    margin: 3rem 0;
-    display: flex;
-    justify-content: center;
-}
-
 .instruction p {
     margin-top: 0;
     margin-bottom: 20px;
@@ -127,16 +136,6 @@ th {
 .form-convert label {
     margin-right: var(--bsc-margin);
     text-wrap: nowrap;
-}
-
-.temper-drop {
-    font-family: "Roboto", sans-serif;
-    font-size: 13px;
-    color: #5C5C5C;
-    border: #CDCDCD solid 1px;
-    background-color: #FFFCFC;
-    height: 1.6rem;
-    margin-right: var(--bsc-margin);
 }
 
 .form-btn-group {
@@ -187,25 +186,43 @@ th {
 }
 
 .validation {
-    color: red;
+    color: var(--warning-color);
     margin-bottom: 0;
 }
 
-.result-calc div {
-    height: 100px;
-}
+/* ------------- calculation detail ------------- */
 
 .calc-detail {
     border-bottom: none;
 }
 
-.margin-btm-md {
-    margin-bottom: 2.6rem;
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
 
-.font-weight-md {
-    font-weight: 500;
+th {
+    border: #B4B4B4 solid 1px;
+    font-weight: normal;
+    text-align: left;
+    padding: var(--bsc-margin);
 }
+
+/* ------------- result ------------- */
+
+.result-calc div {
+    height: 50px;
+}
+
+/* ------------- footer ------------- */
+
+footer {
+    font-size: 12px;
+    text-align: center;
+    color: #999999;
+}
+
+/* ------------- navigation ------------- */
 
 nav {
     display: flex;
@@ -236,12 +253,11 @@ nav div {
     background-color: blue;
     border-radius: 50%;
     display: inline-block;
-  }
+}
 
 /* for tablet */
 @media only screen and (max-width: 768px) {
     main {
-        /* max-width: 500px; */
         max-width: 100%;
         margin: auto 5rem;
         border-left: var(--main-content-border);
@@ -268,7 +284,6 @@ nav div {
 /* for mobile */
 @media only screen and (max-width: 480px){
     main {
-        /* max-width: 500px; */
         width: 100%;
         margin: 0;
         border: none;
