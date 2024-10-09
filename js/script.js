@@ -1,10 +1,10 @@
-// alogarithm basic convertion ->
+// todo basic convertion ->
 // > listen for button klik dan gabungkan dg input value 
 // > user klik convert lalu kita baca value nya jika ada 
 // > berdasarkan value kita hitung dg rumus dlm function
 // > ambil div untuk menampilkan hasil lalu edit kontennya
 
-// alogarithm penukaran celcius dg farenheit dan reset button ->
+// todo penukaran celcius dg farenheit dan reset button ->
 // > listen tombol tukar
 // > check input label character pertama untuk ngecek jenis suhu
 // > ketika diklik label input dan label result diganti
@@ -12,8 +12,8 @@
 // > change result everytime tukar get pressed
 // > put empty string pada input setiap tombol reset ditekan
 
-// insert new elemnt dan disend ke html
-// bikin regex buat menghilangkan character e, *, etc -> tapi minus perlu
+// todo validasi ->
+// > display invalid di html dg manipulasi styling
 
 // bug ->
 // > button submit tiba2 scroll kebwh ketika diklik dan reload sendiri -> button inside form akan otomatis reload sendiri
@@ -31,32 +31,22 @@ let inputLabel = document.querySelector(".from-convert label");
 let resultLabel = document.querySelector(".result-short p");
 // let calcDetailDiv = document.querySelector("");
 
+let validationText = document.querySelector(".validation");
+
 let temperType = "C";
 
 // -------- event listener --------
 
 submitButton.addEventListener('click', function () {
-    if (inputElem.value) {
-        let userValue = inputElem.value;
-        let result = calculation(userValue, temperType);
-
-        showResult(userValue, result, temperType);
-    } else {
-        // TODO VALIDASI HARUS DIISI
-        console.log("required to be filled");
-    }
+    submitFunc();
 })
 
 tukarButton.addEventListener("click", function () {
     temperType = resultLabel.textContent.charAt(0);
     labelSwitcher(temperType);
     
-    // TODO DIKASI VALIDASI
     console.log(temperType)
-    let userValue = inputElem.value;
-    let result = calculation(userValue, temperType);
-    
-    showResult(userValue, result, temperType);
+    submitFunc();
 })
 
 resetButton.addEventListener("click", function() {
@@ -64,6 +54,20 @@ resetButton.addEventListener("click", function() {
 })
 
 // -------- function --------
+
+let submitFunc = () => {
+    if (inputElem.value) {
+        let userValue = inputElem.value;
+        let result = calculation(userValue, temperType);
+
+        showResult(userValue, result, temperType);
+        validationText.style.display = "none";
+    } else {
+        console.log("required to be filled");
+        validationText.style.display = "block";
+    }
+}
+
 let calculation = (inputVal, temType) => {
     if (temType == "C"){ 
         result = inputVal * (9 / 5) + 32;
