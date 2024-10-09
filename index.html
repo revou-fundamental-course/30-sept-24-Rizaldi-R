@@ -22,7 +22,6 @@
     
                 <!-- user input -->
                 <form class="form-convert">
-                    <!-- <label for="input-temperature">Celcius (&deg;C) : </label> -->
                     <select id="temper-input" name="temper-i" class="temper-drop">
                         <option value="C">Celcius (&deg;C)</option>
                         <option value="F">Fahrenheit (&deg;F)</option>
@@ -42,7 +41,7 @@
                 </form>
 
                 <!-- validation -->
-                <p class="validation" style="display: none;">* kotak perlu diisi angka</p>
+                <p class="validation" style="display: none;">*kotak perlu diisi angka</p>
             </section>
                 
             <!-- result -->
@@ -63,28 +62,102 @@
                     <div>Hasil akan ditampilkan setelah tombol konversi ditekan</div>
                 </div>
     
-                <!-- calculation -->
+                <!-- long answer calculation -->
                 <div class="result-calc">
                     <p>Cara Kalkulasi : </p>
                     <div>Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan</div>
                 </div>
-                
-                <!-- <a href="" class="">Fahrenheit ke Celcius</a> -->
             </section>
             
             <!--calculation detail -->
             <section id="detail" class="calc-detail">
                 <h4 class="heading-colr margin-btm-md">Penjelasan Cara Konversi</h4>
 
-                <div class="detail-celcius margin-btm-md">
+                <p class="font-weight-md"> Cara Konversi Celcius (&deg;C)</p>
+                <table class="margin-btm-md">
+                    <tr>
+                        <th>Celsius ke Fahrenheit</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;F)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> × 9/5 + 32</th>
+                    </tr>
+                    <tr>
+                        <th>Celsius ke Kelvin</th>
+                        <th><span class="temper-style">S</span><sub>(K)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> + 273.15</th>
+                    </tr>
+                    <tr>
+                        <th>Celsius ke Rankine</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;R)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> × 9/5 + 491.67</th>
+                    </tr>
+                </table>
+
+                <p class="font-weight-md">Cara Konversi Fahrenheit (&deg;F)</p>
+                <table class="margin-btm-md">
+                    <tr>
+                        <th>Fahrenheit ke Celsius</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;C)</sub> = 
+                            (<span class="temper-style">S</span><sub>(&deg;F)</sub> − 32) × 5/9</th>
+                    </tr>
+                    <tr>
+                        <th>Fahrenheit ke Kelvin</th>
+                        <th><span class="temper-style">S</span><sub>(K)</sub> = 
+                            (<span class="temper-style">S</span><sub>(&deg;F)</sub> + 459.67) × 5/9</th>
+                    </tr>
+                    <tr>
+                        <th>Fahrenheit ke Rankine</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;R)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;F)</sub> + 459.67</th>
+                    </tr>
+                </table>
+
+                <p class="font-weight-md">Cara Konversi Kelvin (K)</p>
+                <table class="margin-btm-md">
+                    <tr>
+                        <th>Kelvin ke Celsius</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;C)</sub> = 
+                            <span class="temper-style">S</span><sub>(K)</sub> − 273.15</th>
+                    </tr>
+                    <tr>
+                        <th>Kelvin ke Fahrenheit</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;F)</sub> = 
+                            <span class="temper-style">S</span><sub>(K)</sub> × 9/5 − 459.67</th>
+                    </tr>
+                    <tr>
+                        <th>Kelvin ke Rankine</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;R)</sub> = 
+                            <span class="temper-style">S</span><sub>(K)</sub> × 9/5</th>
+                    </tr>
+                </table>
+
+                <p class="font-weight-md">Cara Konversi Rankine (&deg;R)</p>
+                <table class="margin-btm-md">
+                    <tr>
+                        <th>Rankine ke Celsius</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;C)</sub> = 
+                            (<span class="temper-style">S</span><sub>(&deg;R)</sub> - 491.67) × 5/9</th>
+                    </tr>
+                    <tr>
+                        <th>Rankine ke Fahrenheit</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;F)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;R)</sub> − 459.67</th>
+                    </tr>
+                    <tr>
+                        <th>Rankine ke Kelvin</th>
+                        <th><span class="temper-style">S</span><sub>(&deg;K)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;R)</sub> x 5/9</th>
+                    </tr>
+                </table>
+
+                <!-- <div class="detail-celcius margin-btm-md">
                     <p class="font-weight-md">Cara Konversi Celcius (&deg;C) ke Fahrenheit (&deg;F)</p>
                     <article>
                         <p>Suhu <span class="temper-style">S</span> dalam derajat Fahrenheit (&deg;F) sama dengan suhu S dalam derajat Celcius (&deg;C) kali 9/5 tambah 32</p>
         
                         <p>
-                            <span class="temper-style">S</span><sub>(&deg;F)</sub>
+                            <span class="temper-style">S</span><sub>((&deg;)F)</sub>
                             =
-                            (<span class="temper-style">S</span><sub>(&deg;C)</sub>
+                            (<span class="temper-style">S</span><sub>((&deg;)C)</sub>
                             &times; 9/5) + 32
         
                             <span>atau</span>
@@ -95,9 +168,9 @@
                             &times; 1,8) + 32
                         </p>
                     </article>
-                </div>
+                </div> -->
 
-                <div class="detail-farenheit margin-btm-md">
+                <!-- <div class="detail-farenheit margin-btm-md">
                     <p class="font-weight-md">Cara Konversi Fahrenheit (&deg;F) ke Celcius (&deg;C)</p>
                     <article>
                         <p>Suhu <span class="temper-style">S</span> dalam derajat Celcius (&deg;C) sama dengan suhu S dalam derajat Fahrenheit (&deg;F) dikurangi 32 dikali 5/9</p>
@@ -116,10 +189,11 @@
                              − 32) × 0.555556
                         </p>
                     </article>
-                </div>
+                </div> -->
             </section>
         </main>
     
+        <!-- navigation -->
         <nav>
             <span class="circle"></span>
             <div>
@@ -131,6 +205,7 @@
         </nav>    
     </div>
 
+    <!-- footer -->
     <footer>
         <p>Made with 😢 by <a href="https://github.com/Rizaldi-R" target="_blank">Rizaldi-R@2024</a></p>
     </footer>
