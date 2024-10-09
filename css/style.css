@@ -111,12 +111,12 @@ h4 {
     margin-bottom: 20px;
 }
 
-.from-convert {
+.form-convert {
     display: flex;
     align-items: center;
 }
 
-.from-convert label {
+.form-convert label {
     margin-right: var(--bsc-margin);
     text-wrap: nowrap;
 }
@@ -275,18 +275,18 @@ nav div {
         padding: var(--medium-padding);
     }
 
-    .from-convert {
+    .form-convert {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
     }
 
-    .from-convert label {
+    .form-convert label {
         width: 30%;
         margin: 0;
     }
 
-    .from-convert #input-temperature {
+    .form-convert #input-temperature {
         width: 60%;
         margin-left: auto;
     }
