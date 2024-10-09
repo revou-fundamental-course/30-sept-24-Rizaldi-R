@@ -77,9 +77,9 @@ h4 {
     border: 1px solid #C2C2C2;
 }
 
-#result div {
+/* #result div {
     margin-bottom: 2rem;
-}
+} */
 
 #result div p {
     text-wrap: nowrap;
@@ -136,6 +136,8 @@ h4 {
 
 .form-btn {
     all: unset;
+    border: #CDCDCD solid 1px;
+    background-color: #FFFCFC;
     line-height: var(--btn-height);
     text-wrap: nowrap;
     height: var(--btn-height);
@@ -161,12 +163,7 @@ h4 {
     margin-right: 4px;
 }
 
-.form-btn-other {
-    border: #CDCDCD solid 1px;
-    background-color: #FFFCFC;
-}
-
-.form-btn-other:hover{
+.form-btn-group div button:hover{
     cursor: pointer;
     background-color: #d7d7d7;
 }
@@ -179,8 +176,12 @@ h4 {
     border-bottom: none;
 }
 
-.detail-farenheit {
-    display: none;
+.margin-btm-md {
+    margin-bottom: 2.6rem;
+}
+
+.font-weight-md {
+    font-weight: 500;
 }
 
 nav {
@@ -271,7 +272,8 @@ nav div {
     }
 
     .from-convert #input-temperature {
-        width: 67%;
+        width: 60%;
+        margin-left: auto;
     }
 
     .form-btn-group {
