@@ -22,10 +22,10 @@
 // > dropdown yg result mengclean hasilnya
 
 // todo tombol reset ->
-// reset hasilnya juga
+// > reset hasilnya juga
 
 // todo perbaiki tombol tukar -> 
-// 
+// > 
 
 // bug ->
 // > button submit reload sendiri -> button inside form akan otomatis reload sendiri
@@ -34,12 +34,10 @@
 let inputElem = document.querySelector("#input-temperature");
 let submitButton = document.querySelector(".form-btn-submit");
 let shortResultDiv = document.querySelector(".result-short div");
-let calcResultDiv = document.querySelector(".result-calc div");
+let longResultDiv = document.querySelector(".result-calc div");
 
 let tukarButton = document.querySelector(".form-btn-tukar");
 let resetButton = document.querySelector(".form-btn-reset");
-let inputLabel = document.querySelector(".from-convert label");
-let resultLabel = document.querySelector(".result-short p");
 
 let validationText = document.querySelector(".validation");
 
@@ -65,18 +63,16 @@ submitButton.addEventListener('click', function () {
     submitValidAndShow();
 })
 
-// tukarButton.addEventListener("click", function () {
-//     temperTypeInput = resultLabel.textContent.charAt(0);
-//     labelSwitcher(temperTypeInput);
-    
-//     console.log(temperTypeInput)
-//     submitValidAndShow();
-// })
-
 resetButton.addEventListener("click", function() {
     inputElem.value = ""
     shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan"
-    calcResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan"
+    longResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan"
+})
+
+tukarButton.addEventListener("click", function () {
+    dropdwnSwitcher();
+
+    submitValidAndShow();
 })
 
 // -------- function --------
@@ -164,15 +160,15 @@ let calculation = (inputVal, temTypeIn, temTypeR) => {
 
 let showResult = (shorResult, longResult, temTypeR) => {
     shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeR}`;
-    calcResultDiv.innerHTML = longResult
+    longResultDiv.innerHTML = longResult
 }
 
-let labelSwitcher = (temType) => {
-    if (temType == "C"){
-        inputLabel.innerHTML = "Celcius (&deg;C) :"
-        resultLabel.innerHTML = "Fahrenheit (&deg;F) :"
-    } else {
-        inputLabel.innerHTML = "Fahrenheit (&deg;F) :"
-        resultLabel.innerHTML = "Celcius (&deg;C) :"
-    }
+let dropdwnSwitcher = () => {
+    let dropInputValTemp = dropdwnInput.value;
+
+    dropdwnInput.value = dropdwnResult.value;
+    dropdwnResult.value = dropInputValTemp;
+
+    temperTypeInput = dropdwnInput.value;
+    temperTypeResult = dropdwnResult.value;
 }
