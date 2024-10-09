@@ -1,36 +1,3 @@
-// todo basic convertion ->
-// > listen for button klik dan gabungkan dg input value 
-// > user klik convert lalu kita baca value nya jika ada 
-// > berdasarkan value kita hitung dg rumus dlm function
-// > ambil div untuk menampilkan hasil lalu edit kontennya
-
-// todo penukaran celcius dg farenheit dan reset button ->
-// > listen tombol tukar
-// > check input label character pertama untuk ngecek jenis suhu
-// > ketika diklik label input dan label result diganti
-// > di fungsi calculation dan showResult ditambah param dan if statment
-// > change result everytime tukar get pressed
-// > put empty string pada input setiap tombol reset ditekan
-
-// todo validasi ->
-// > display invalid di html dg manipulasi styling
-
-// todo temp tipe lain ->
-// > listen to select element input and simpan tipe temp nya
-// > listen to select element result and simpan tipe temp nya
-// > calculation return array that can be used for to show cara kalkulasi
-// > dropdown yg result mengclean hasilnya
-
-// todo tombol reset ->
-// > reset hasilnya juga
-
-// todo perbaiki tombol tukar -> 
-// > 
-
-// bug ->
-// > button submit reload sendiri -> button inside form akan otomatis reload sendiri
-// > Add type="button" to the button, the default value of type for a button is submit
-
 let inputElem = document.querySelector("#input-temperature");
 let submitButton = document.querySelector(".form-btn-submit");
 let shortResultDiv = document.querySelector(".result-short div");
@@ -71,7 +38,6 @@ resetButton.addEventListener("click", function() {
 
 tukarButton.addEventListener("click", function () {
     dropdwnSwitcher();
-
     submitValidAndShow();
 })
 
@@ -92,7 +58,7 @@ let submitValidAndShow = () => {
     }
 }
 
-let calculation = (inputVal, temTypeIn, temTypeR) => {
+let calculation = (inputVal, temTypeIn, temTypeOut) => {
     const resultObj = {
         shortRes: 0,
         longRes: ""
@@ -102,53 +68,53 @@ let calculation = (inputVal, temTypeIn, temTypeR) => {
     let longR = "";
     let inpValFlt = parseFloat(inputVal);
 
-    if (temTypeIn == "C" && temTypeIn !== temTypeR){ 
-        if (temTypeR == "F") {
+    if (temTypeIn == "C" && temTypeIn !== temTypeOut){ 
+        if (temTypeOut == "F") {
             shortR = inpValFlt * (9/5) + 32;
-            longR = `${inpValFlt}&deg;${temTypeIn} * (9 / 5) + 32 = ${shortR}&deg;${temTypeR}`
-        } else if (temTypeR == "K") {
+            longR = `${inpValFlt}&deg;${temTypeIn} * (9 / 5) + 32 = ${shortR}&deg;${temTypeOut}`
+        } else if (temTypeOut == "K") {
             shortR = inpValFlt + 273.15;
-            longR = `${inpValFlt}&deg;${temTypeIn} + 273.15 = ${shortR}&deg;${temTypeR}`
+            longR = `${inpValFlt}&deg;${temTypeIn} + 273.15 = ${shortR}&deg;${temTypeOut}`
         } else {
             shortR = (inpValFlt * (9/5)) + 491.67;
-            longR = `${inpValFlt}&deg;${temTypeIn} * (9/5)) + 491.67 = ${shortR}&deg;${temTypeR}`
+            longR = `${inpValFlt}&deg;${temTypeIn} * (9/5)) + 491.67 = ${shortR}&deg;${temTypeOut}`
         }
-    } else if (temTypeIn == "F" && temTypeIn !== temTypeR) {
-        if (temTypeR == "C") {
+    } else if (temTypeIn == "F" && temTypeIn !== temTypeOut) {
+        if (temTypeOut == "C") {
             shortR = (inpValFlt - 32) * (5/9);
-            longR = `(${inpValFlt}&deg;${temTypeIn} - 32) * (5/9) = ${shortR}&deg;${temTypeR}`
-        } else if (temTypeR == "K") {
+            longR = `(${inpValFlt}&deg;${temTypeIn} - 32) * (5/9) = ${shortR}&deg;${temTypeOut}`
+        } else if (temTypeOut == "K") {
             shortR = (inpValFlt + 459.67) * (5/9);
-            longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67) * (5/9) = ${shortR}&deg;${temTypeR}`
+            longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67) * (5/9) = ${shortR}&deg;${temTypeOut}`
         } else {
             shortR = inpValFlt + 459.67;
-            longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67 = ${shortR}&deg;${temTypeR}`
+            longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67 = ${shortR}&deg;${temTypeOut}`
         }
-    } else if (temTypeIn == "K" && temTypeIn !== temTypeR) { 
-        if (temTypeR == "C") {
+    } else if (temTypeIn == "K" && temTypeIn !== temTypeOut) { 
+        if (temTypeOut == "C") {
             shortR = inpValFlt - 273.15;
-            longR = `${inpValFlt}&deg;${temTypeIn} - 273.15 = ${shortR}&deg;${temTypeR}`
-        } else if (temTypeR == "F") {
+            longR = `${inpValFlt}&deg;${temTypeIn} - 273.15 = ${shortR}&deg;${temTypeOut}`
+        } else if (temTypeOut == "F") {
             shortR = (inpValFlt * (9/5)) - 459.67;
-            longR = `(${inpValFlt}&deg;${temTypeIn} * (9/5)) - 459.67 = ${shortR}&deg;${temTypeR}`
+            longR = `(${inpValFlt}&deg;${temTypeIn} * (9/5)) - 459.67 = ${shortR}&deg;${temTypeOut}`
         } else {
             shortR = inpValFlt * (9/5);
-            longR = `${inpValFlt}&deg;${temTypeIn} * (9/5) = ${shortR}&deg;${temTypeR}`
+            longR = `${inpValFlt}&deg;${temTypeIn} * (9/5) = ${shortR}&deg;${temTypeOut}`
         }
-    } else if (temTypeIn == "R" && temTypeIn !== temTypeR) {
-        if (temTypeR == "C") {
+    } else if (temTypeIn == "R" && temTypeIn !== temTypeOut) {
+        if (temTypeOut == "C") {
             shortR = (inpValFlt - 491.67) * (5/9);
-            longR = `(${inpValFlt}&deg;${temTypeIn} - 491.67) * (5/9) = ${shortR}&deg;${temTypeR}`
-        } else if (temTypeR == "F") {
+            longR = `(${inpValFlt}&deg;${temTypeIn} - 491.67) * (5/9) = ${shortR}&deg;${temTypeOut}`
+        } else if (temTypeOut == "F") {
             shortR = inpValFlt - 459.67;
-            longR = `${inpValFlt}&deg;${temTypeIn} - 459.67 = ${shortR}&deg;${temTypeR}`
+            longR = `${inpValFlt}&deg;${temTypeIn} - 459.67 = ${shortR}&deg;${temTypeOut}`
         } else {
             shortR = inpValFlt * (5/9);
-            longR = `${inpValFlt}&deg;${temTypeIn} * (5/9) = ${shortR}&deg;${temTypeR}`
+            longR = `${inpValFlt}&deg;${temTypeIn} * (5/9) = ${shortR}&deg;${temTypeOut}`
         }
     } else {
         resultObj.shortRes = inpValFlt;
-        resultObj.longRes = `${inpValFlt}&deg;${temTypeIn} = ${inpValFlt}&deg;${temTypeR}`;
+        resultObj.longRes = `${inpValFlt}&deg;${temTypeIn} = ${inpValFlt}&deg;${temTypeOut}`;
         return resultObj;
     }
 
@@ -158,8 +124,8 @@ let calculation = (inputVal, temTypeIn, temTypeR) => {
     return resultObj;
 }
 
-let showResult = (shorResult, longResult, temTypeR) => {
-    shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeR}`;
+let showResult = (shorResult, longResult, temTypeOut) => {
+    shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeOut}`;
     longResultDiv.innerHTML = longResult
 }
 
