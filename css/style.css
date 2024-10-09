@@ -168,6 +168,11 @@ h4 {
     background-color: #d7d7d7;
 }
 
+.validation {
+    color: red;
+    margin-bottom: 0;
+}
+
 .result-calc div {
     height: 100px;
 }
