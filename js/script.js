@@ -1,55 +1,68 @@
 const formElem = document.querySelector(".form-convert")
 const inputElem = document.querySelector("#input-temperature");
-const submitButton = document.querySelector(".form-btn-submit");
 const shortResultDiv = document.querySelector(".result-short div");
 const longResultDiv = document.querySelector(".result-calc div");
 
-const tukarButton = document.querySelector(".form-btn-tukar");
+const submitButton = document.querySelector(".form-btn-submit");
 const resetButton = document.querySelector(".form-btn-reset");
-
-const validationText = document.querySelector(".validation");
+const tukarButton = document.querySelector(".form-btn-tukar");
 
 const dropdwnInput = document.querySelector("#temper-input");
 const dropdwnResult = document.querySelector("#temper-result");
 
+const validationText = document.querySelector(".validation");
+
+const navbar = document.querySelector("nav");
+const circleScrollBar = document.querySelector(".circle");
+
 let temperTypeInput = "C";
 let temperTypeResult = "F";
+
+const navHeightLeft = navbar.offsetHeight - circleScrollBar.offsetHeight;
+const navHLPercent = (navHeightLeft/navbar.offsetHeight) * 100;
 
 // -------- event listener --------
 
 dropdwnInput.addEventListener("change", function () {
     temperTypeInput = dropdwnInput.value;
-    submitValidAndShow();
+    formValidAndShow();
 })
 
 dropdwnResult.addEventListener("change", function () {
     temperTypeResult = dropdwnResult.value;
-    submitValidAndShow();
+    formValidAndShow();
 })
 
 formElem.addEventListener("submit", function (e) {
     e.preventDefault();
-    submitValidAndShow();
+    formValidAndShow();
 })
 
 submitButton.addEventListener("click", function () {
-    submitValidAndShow();
+    formValidAndShow();
 })
 
 resetButton.addEventListener("click", function() {
     inputElem.value = "";
+    // TODO ini perlu digrup di function
     shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan";
     longResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan";
+    validationText.style.display = "none";
 })
 
 tukarButton.addEventListener("click", function () {
     dropdwnSwitcher();
-    submitValidAndShow();
+    formValidAndShow();
+})
+
+window.addEventListener("scroll", function() {
+    scrollIndicator()
+    // console.log('scroll')
 })
 
 // -------- function --------
 
-let submitValidAndShow = () => {
+const formValidAndShow = () => {
     if (inputElem.value) {
         let userValue = inputElem.value;
         let result = calculation(userValue, temperTypeInput, temperTypeResult);
@@ -63,7 +76,7 @@ let submitValidAndShow = () => {
     }
 }
 
-let calculation = (inputVal, temTypeIn, temTypeOut) => {
+const calculation = (inputVal, temTypeIn, temTypeOut) => {
     const resultObj = {
         shortRes: 0,
         longRes: ""
@@ -93,7 +106,7 @@ let calculation = (inputVal, temTypeIn, temTypeOut) => {
             longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67) * (5/9) = ${shortR}&deg;${temTypeOut}`
         } else {
             shortR = inpValFlt + 459.67;
-            longR = `(${inpValFlt}&deg;${temTypeIn} + 459.67 = ${shortR}&deg;${temTypeOut}`
+            longR = `${inpValFlt}&deg;${temTypeIn} + 459.67 = ${shortR}&deg;${temTypeOut}`
         }
     } else if (temTypeIn == "K" && temTypeIn !== temTypeOut) { 
         if (temTypeOut == "C") {
@@ -124,17 +137,17 @@ let calculation = (inputVal, temTypeIn, temTypeOut) => {
     }
 
     resultObj.shortRes = Math.round(shortR * 10000) / 10000;
-    resultObj.longRes = longR
+    resultObj.longRes = longR;
 
     return resultObj;
 }
 
-let showResult = (shorResult, longResult, temTypeOut) => {
+const showResult = (shorResult, longResult, temTypeOut) => {
     shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeOut}`;
-    longResultDiv.innerHTML = longResult
+    longResultDiv.innerHTML = longResult;
 }
 
-let dropdwnSwitcher = () => {
+const dropdwnSwitcher = () => {
     let dropInputValTemp = dropdwnInput.value;
 
     dropdwnInput.value = dropdwnResult.value;
@@ -142,4 +155,13 @@ let dropdwnSwitcher = () => {
 
     temperTypeInput = dropdwnInput.value;
     temperTypeResult = dropdwnResult.value;
+}
+
+const scrollIndicator = () => {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    let navHBasedScrolled = (navHLPercent / 100) * scrolled;
+
+    circleScrollBar.style.top = navHBasedScrolled + "%";
 }

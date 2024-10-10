@@ -7,6 +7,7 @@
     --large-padding: 50px;
     --medium-padding: 30px;
     --warning-color: red;
+    --scroll: calc(100% - 100px);
 }
 
 html {
@@ -225,9 +226,9 @@ footer {
 /* ------------- navigation ------------- */
 
 nav {
-    display: flex;
+    /* display: flex;
     flex-direction: column-reverse;
-    align-items: center;
+    align-items: center; */
     margin: 0 3rem;
     top: 3rem;
     height: fit-content;
@@ -236,24 +237,33 @@ nav {
 
 nav div {
     padding: 2rem;
-    padding-bottom: 4.3rem;
+    padding-bottom: 6rem;
     border: #D2CBFFCC solid 1px;
     border-radius: 27px;
     background: linear-gradient(to bottom right, #E5EBFFE6, #E6EDFF80);
-    backdrop-filter: blur(13px);
-    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .circle {
-    cursor: pointer;
     position: absolute;
-    top: 11rem;
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
     background-color: blue;
     border-radius: 50%;
     display: inline-block;
 }
+
+/* nav .circle {
+    animation: move 40s infinite;
+    -webkit-animation: move 40s infinite;
+}
+
+@keyframes move {
+    0% {top: 0%; left: 0;}
+    50% {top: 60%; left: 0%;}
+    100% {top: 0%; left: 0;}
+} */
 
 /* for tablet */
 @media only screen and (max-width: 768px) {
