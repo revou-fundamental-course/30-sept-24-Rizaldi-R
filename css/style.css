@@ -279,6 +279,34 @@ nav div {
     nav {
         display: none;
     }
+
+    #temper-input {
+        width: 30%;
+        margin-right: 3%;
+    }
+
+    #input-temperature {
+        margin: 0;
+        padding: 0 0.5%;
+        width: 65%;
+    }
+
+    .form-convert {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .form-btn-group {
+        margin-left: 0;
+    }
+
+    .form-btn {
+        margin-top: var(--bsc-margin);
+    }
+
+    #result {
+        text-align: left;
+    }
 }
 
 /* for mobile */
@@ -302,20 +330,5 @@ nav div {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-    }
-
-    .form-convert label {
-        width: 30%;
-        margin: 0;
-    }
-
-    .form-convert #input-temperature {
-        width: 60%;
-        margin-left: auto;
-    }
-
-    .form-btn-group {
-        margin: 0;
-        margin-top: 0.6rem;
     }
 }
