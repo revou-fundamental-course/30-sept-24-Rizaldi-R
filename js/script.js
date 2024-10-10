@@ -41,10 +41,8 @@ submitButton.addEventListener("click", function () {
 
 resetButton.addEventListener("click", function() {
     inputElem.value = "";
-    // TODO ini perlu digrup di function
-    shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan";
-    longResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan";
     validationText.style.display = "none";
+    showResult(true);
 })
 
 tukarButton.addEventListener("click", function () {
@@ -54,7 +52,6 @@ tukarButton.addEventListener("click", function () {
 
 window.addEventListener("scroll", function() {
     scrollIndicator()
-    // console.log('scroll')
 })
 
 // -------- function --------
@@ -66,7 +63,7 @@ const formValidAndShow = () => {
         const shortResult = result.shortRes
         const longResult = result.longRes
 
-        showResult(shortResult, longResult, temperTypeResult);
+        showResult(false, shortResult, longResult, temperTypeResult);
         validationText.style.display = "none";
     } else {
         validationText.style.display = "block";
@@ -139,9 +136,14 @@ const calculation = (inputVal, temTypeIn, temTypeOut) => {
     return resultObj;
 }
 
-const showResult = (shorResult, longResult, temTypeOut) => {
-    shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeOut}`;
-    longResultDiv.innerHTML = longResult;
+const showResult = (isResetResult = false, shorResult, longResult, temTypeOut) => {
+    if (!isResetResult) {
+        shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeOut}`;
+        longResultDiv.innerHTML = longResult;
+    } else {
+        shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan";
+        longResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan";
+    }
 }
 
 const dropdwnSwitcher = () => {
