@@ -18,9 +18,6 @@ const circleScrollBar = document.querySelector(".circle");
 let temperTypeInput = "C";
 let temperTypeResult = "F";
 
-const navHeightLeft = navbar.offsetHeight - circleScrollBar.offsetHeight;
-const navHLPercent = (navHeightLeft/navbar.offsetHeight) * 100;
-
 // -------- event listener --------
 
 dropdwnInput.addEventListener("change", function () {
@@ -64,10 +61,10 @@ window.addEventListener("scroll", function() {
 
 const formValidAndShow = () => {
     if (inputElem.value) {
-        let userValue = inputElem.value;
-        let result = calculation(userValue, temperTypeInput, temperTypeResult);
-        let shortResult = result.shortRes
-        let longResult = result.longRes
+        const userValue = inputElem.value;
+        const result = calculation(userValue, temperTypeInput, temperTypeResult);
+        const shortResult = result.shortRes
+        const longResult = result.longRes
 
         showResult(shortResult, longResult, temperTypeResult);
         validationText.style.display = "none";
@@ -148,7 +145,7 @@ const showResult = (shorResult, longResult, temTypeOut) => {
 }
 
 const dropdwnSwitcher = () => {
-    let dropInputValTemp = dropdwnInput.value;
+    const dropInputValTemp = dropdwnInput.value;
 
     dropdwnInput.value = dropdwnResult.value;
     dropdwnResult.value = dropInputValTemp;
@@ -158,10 +155,14 @@ const dropdwnSwitcher = () => {
 }
 
 const scrollIndicator = () => {
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolled = (winScroll / height) * 100;
-    let navHBasedScrolled = (navHLPercent / 100) * scrolled;
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+
+    const navHeightLeft = navbar.offsetHeight - circleScrollBar.offsetHeight;
+    const navHLPercent = (navHeightLeft/navbar.offsetHeight) * 100;
+
+    const navHBasedScrolled = (navHLPercent / 100) * scrolled;
 
     circleScrollBar.style.top = navHBasedScrolled + "%";
 }
