@@ -6,201 +6,183 @@
     <title>Kalkulator Konversi Suhu</title>
     <link rel="stylesheet" href="css\style.css">
 </head>
-<body class="text-colr">
+<body>
     <div class="container">
         <main>
-            <header id="title">
-                <h1 class="heading-colr">Kalkulator Konversi Suhu</h1>
+            <header id="title" class="title">
+                <h1 class="heading-color">Kalkulator Konversi Suhu</h1>
             </header>
             
-            <!-- form content -->
-            <section id="input">
-                <!-- instruction -->
-                <article class="instruction">
-                    <p>Masukkan suhu yang ingin dikonversikan ke kotak dibawah, lalu klik tombol konversi untuk mendapatkan hasil konversi. Klik tombol reset untuk mengkosongkan kotak dan tombol tukar untuk menukar jenis suhu.</p>
-                </article>
+            <!-- user input -->
+            <section id="input-sect" class="input-sect">
+                <form id="input-sect-form" class="input-sect-form">
+                    <div class="input-sect-group">
+                        <label class="input-sect-label" for="input-sect-drop-from">Dari</label>
+                        <select id="input-sect-drop-from" class="input-sect-input-drop">
+                            <option value="C">Celcius (&deg;C)</option>
+                            <option value="F">Fahrenheit (&deg;F)</option>
+                            <option value="K">Kelvin (K)</option>
+                            <option value="R">Rankine (&deg;R)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-sect-group">
+                        <label class="input-sect-label" for="input-sect-drop-to">Menjadi</label>
+                        <select id="input-sect-drop-to" class="input-sect-input-drop">
+                            <option value="C">Celcius (&deg;C)</option>
+                            <option value="F" selected>Fahrenheit (&deg;F)</option>
+                            <option value="K">Kelvin (K)</option>
+                            <option value="R">Rankine (&deg;R)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-sect-group">
+                        <label class="input-sect-label" for="input-number">Angka</label>
+                        <input id="input-sect-number" class="input-sect-input-number" type="number"></input>
+                    </div>
+
+                    <!-- validation -->
+                    <p id="input-sect-valid" class="input-sect-valid" style="display: none;">*kotak perlu diisi angka</p>
     
-                <!-- user input -->
-                <form class="form-convert">
-                    <select id="temper-input" name="temper-i" class="temper-drop">
-                        <option value="C">Celcius (&deg;C)</option>
-                        <option value="F">Fahrenheit (&deg;F)</option>
-                        <option value="K">Kelvin (&deg;K)</option>
-                        <option value="R">Rankine (&deg;R)</option>
-                    </select>
-    
-                    <input id="input-temperature" type="number"></input>
-    
-                    <div class="form-btn-group">
-                        <button type="button" class="form-btn form-btn-submit"><span>&rarrhk;</span> Konversi</button>
-                        <div>
-                            <button type="button" class="form-btn form-btn-reset">Reset</button>
-                            <button type="button" class="form-btn form-btn-tukar">Tukar</button>
-                        </div>
+                    <div class="input-sect-group">
+                        <button id="input-sect-btn-submit" class="input-sect-btn input-sect-btn-submit" type="button"><span>&rarrhk;</span> Konversi</button>
+                        <button id="input-sect-btn-reset" class="input-sect-btn input-sect-btn-reset" type="button">Reset</button>
+                        <button id="input-sect-btn-tukar" class="input-sect-btn input-sect-btn-tukar" type="button">Tukar</button>
                     </div>
                 </form>
-
-                <!-- validation -->
-                <p class="validation" style="display: none;">*kotak perlu diisi angka</p>
             </section>
-                
-            <!-- result -->
-            <section id="result">
-                <h4 class="heading-colr margin-btm-md">
-                    Hasil Konversi ke                 
-                    <select id="temper-result" name="temper-r" class="temper-drop">
-                        <option value="C">Celcius (&deg;C)</option>
-                        <option value="F" selected="selected">Fahrenheit (&deg;F)</option>
-                        <option value="K">Kelvin (&deg;K)</option>
-                        <option value="R">Rankine (&deg;R)</option>
-                    </select>
-                </h4> 
-                
+            
+            <!-- result/output -->
+            <section id="result-sect" class="result-sect">                
                 <!-- short answer -->
-                <div class="result-short margin-btm-md">
-                    <p>Hasil : </p>
-                    <div>Hasil akan ditampilkan setelah tombol konversi ditekan</div>
+                <div class="result-sect-group margin-btm-global">
+                    <span class="result-sect-label">Hasil</span>
+                    <span class="result-sect-colon">:</span>
+                    <span id="result-sect-output-short" class="result-sect-output">Klik tombol konversi / tekan enter</span>
                 </div>
     
                 <!-- long answer calculation -->
-                <div class="result-calc">
-                    <p>Cara Kalkulasi : </p>
-                    <div>Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan</div>
+                <div class="result-sect-group">
+                    <span class="result-sect-label">Cara Kalkulasi</span>
+                    <span class="result-sect-colon">:</span>
+                    <span id="result-sect-output-long" class="result-sect-output"></span>
                 </div>
             </section>
             
             <!--calculation detail -->
-            <section id="detail" class="calc-detail">
-                <h4 class="heading-colr margin-btm-md">Penjelasan Cara Konversi</h4>
+            <section id="detail-sect" class="detail-sect">
+                <h4 class="detail-sect-main-header heading-color">Penjelasan Cara Konversi</h4>
 
-                <p class="font-weight-md"> Cara Konversi Celcius (&deg;C)</p>
-                <table class="margin-btm-md">
-                    <tr>
-                        <th>Celsius ke Fahrenheit</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;F)</sub> = 
-                            <span class="temper-style">S</span><sub>(&deg;C)</sub> × 9/5 + 32</th>
-                    </tr>
-                    <tr>
-                        <th>Celsius ke Kelvin</th>
-                        <th><span class="temper-style">S</span><sub>(K)</sub> = 
-                            <span class="temper-style">S</span><sub>(&deg;C)</sub> + 273.15</th>
-                    </tr>
-                    <tr>
-                        <th>Celsius ke Rankine</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;R)</sub> = 
-                            <span class="temper-style">S</span><sub>(&deg;C)</sub> × 9/5 + 491.67</th>
-                    </tr>
-                </table>
+                <p class="detail-sect-subtitle"> Cara Konversi Celcius (&deg;C)</p>
+                <div class="detail-sect-table">
+                    <div class="detail-sect-row">
+                        <span>Celsius ke Fahrenheit</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;F)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> × 9/5 + 32
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Celsius ke Kelvin</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(K)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> + 273.15
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Celsius ke Rankine</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;R)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> × 9/5 + 491.67
+                        </span>
+                    </div>
+                </div>
 
-                <p class="font-weight-md">Cara Konversi Fahrenheit (&deg;F)</p>
-                <table class="margin-btm-md">
-                    <tr>
-                        <th>Fahrenheit ke Celsius</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;C)</sub> = 
-                            (<span class="temper-style">S</span><sub>(&deg;F)</sub> − 32) × 5/9</th>
-                    </tr>
-                    <tr>
-                        <th>Fahrenheit ke Kelvin</th>
-                        <th><span class="temper-style">S</span><sub>(K)</sub> = 
-                            (<span class="temper-style">S</span><sub>(&deg;F)</sub> + 459.67) × 5/9</th>
-                    </tr>
-                    <tr>
-                        <th>Fahrenheit ke Rankine</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;R)</sub> = 
-                            <span class="temper-style">S</span><sub>(&deg;F)</sub> + 459.67</th>
-                    </tr>
-                </table>
+                <p class="detail-sect-subtitle">Cara Konversi Fahrenheit (&deg;F)</p>
+                <div class="detail-sect-table">
+                    <div class="detail-sect-row">
+                        <span>Fahrenheit ke Celsius</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> = 
+                            (<span class="temper-style">S</span><sub>(&deg;F)</sub> − 32) × 5/9
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Fahrenheit ke Kelvin</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(K)</sub> = 
+                            (<span class="temper-style">S</span><sub>(&deg;F)</sub> + 459.67) × 5/9
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Fahrenheit ke Rankine</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;R)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;F)</sub> + 459.67
+                        </span>
+                    </div>
+                </div>
 
-                <p class="font-weight-md">Cara Konversi Kelvin (K)</p>
-                <table class="margin-btm-md">
-                    <tr>
-                        <th>Kelvin ke Celsius</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;C)</sub> = 
-                            <span class="temper-style">S</span><sub>(K)</sub> − 273.15</th>
-                    </tr>
-                    <tr>
-                        <th>Kelvin ke Fahrenheit</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;F)</sub> = 
-                            <span class="temper-style">S</span><sub>(K)</sub> × 9/5 − 459.67</th>
-                    </tr>
-                    <tr>
-                        <th>Kelvin ke Rankine</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;R)</sub> = 
-                            <span class="temper-style">S</span><sub>(K)</sub> × 9/5</th>
-                    </tr>
-                </table>
+                <p class="detail-sect-subtitle">Cara Konversi Kelvin (K)</p>
+                <div class="detail-sect-table">
+                    <div class="detail-sect-row">
+                        <span>Kelvin ke Celsius</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> = 
+                            <span class="temper-style">S</span><sub>(K)</sub> − 273.15
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Kelvin ke Fahrenheit</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;F)</sub> = 
+                            <span class="temper-style">S</span><sub>(K)</sub> × 9/5 − 459.67
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Kelvin ke Rankine</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;R)</sub> = 
+                            <span class="temper-style">S</span><sub>(K)</sub> × 9/5
+                        </span>
+                    </div>
+                </div>
 
-                <p class="font-weight-md">Cara Konversi Rankine (&deg;R)</p>
-                <table class="margin-btm-md">
-                    <tr>
-                        <th>Rankine ke Celsius</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;C)</sub> = 
-                            (<span class="temper-style">S</span><sub>(&deg;R)</sub> - 491.67) × 5/9</th>
-                    </tr>
-                    <tr>
-                        <th>Rankine ke Fahrenheit</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;F)</sub> = 
-                            <span class="temper-style">S</span><sub>(&deg;R)</sub> − 459.67</th>
-                    </tr>
-                    <tr>
-                        <th>Rankine ke Kelvin</th>
-                        <th><span class="temper-style">S</span><sub>(&deg;K)</sub> = 
-                            <span class="temper-style">S</span><sub>(&deg;R)</sub> x 5/9</th>
-                    </tr>
-                </table>
-
-                <!-- <div class="detail-celcius margin-btm-md">
-                    <p class="font-weight-md">Cara Konversi Celcius (&deg;C) ke Fahrenheit (&deg;F)</p>
-                    <article>
-                        <p>Suhu <span class="temper-style">S</span> dalam derajat Fahrenheit (&deg;F) sama dengan suhu S dalam derajat Celcius (&deg;C) kali 9/5 tambah 32</p>
-        
-                        <p>
-                            <span class="temper-style">S</span><sub>((&deg;)F)</sub>
-                            =
-                            (<span class="temper-style">S</span><sub>((&deg;)C)</sub>
-                            &times; 9/5) + 32
-        
-                            <span>atau</span>
-        
-                            <span class="temper-style">S</span><sub>(&deg;F)</sub>
-                            =
-                            (<span class="temper-style">S</span><sub>(&deg;C)</sub>
-                            &times; 1,8) + 32
-                        </p>
-                    </article>
-                </div> -->
-
-                <!-- <div class="detail-farenheit margin-btm-md">
-                    <p class="font-weight-md">Cara Konversi Fahrenheit (&deg;F) ke Celcius (&deg;C)</p>
-                    <article>
-                        <p>Suhu <span class="temper-style">S</span> dalam derajat Celcius (&deg;C) sama dengan suhu S dalam derajat Fahrenheit (&deg;F) dikurangi 32 dikali 5/9</p>
-        
-                        <p>
-                            <span class="temper-style">S</span><sub>(&deg;C)</sub>
-                            =
-                            (<span class="temper-style">S</span><sub>(&deg;F)</sub>
-                             − 32) × (5/9)
-                            
-                            <span>atau</span>
-                            
-                            <span class="temper-style">S</span><sub>(&deg;C)</sub>
-                            =
-                            (<span class="temper-style">S</span><sub>(&deg;F)</sub>
-                             − 32) × 0.555556
-                        </p>
-                    </article>
-                </div> -->
+                <p class="detail-sect-subtitle">Cara Konversi Rankine (&deg;R)</p>
+                <div class="detail-sect-table">
+                    <div class="detail-sect-row">
+                        <span>Rankine ke Celsius</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;C)</sub> = 
+                            (<span class="temper-style">S</span><sub>(&deg;R)</sub> - 491.67) × 5/9
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Rankine ke Fahrenheit</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;F)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;R)</sub> − 459.67
+                        </span>
+                    </div>
+                    <div class="detail-sect-row">
+                        <span>Rankine ke Kelvin</span>
+                        <span>
+                            <span class="temper-style">S</span><sub>(&deg;K)</sub> = 
+                            <span class="temper-style">S</span><sub>(&deg;R)</sub> x 5/9
+                        </span>
+                    </div>
+                </div>
             </section>
         </main>
     
         <!-- navigation -->
         <nav>
-            <span class="circle"></span>
-            <div>
+            <span id="nav-circle" class="nav-circle"></span>
+            <div class="nav-list-group">
                 <h4 class="heading-colr">Navigasi</h4>
                 <a href="#">kembali ke atas</a>
-                <a href="#result">kembali ke hasil</a>
-                <a href="#detail">kembali ke penjelasan</a>
+                <a href="#result-sect">kembali ke hasil</a>
+                <a href="#detail-sect">kembali ke penjelasan</a>
             </div>
         </nav>    
     </div>

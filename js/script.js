@@ -1,24 +1,24 @@
-const formElem = document.querySelector(".form-convert")
-const inputElem = document.querySelector("#input-temperature");
-const shortResultDiv = document.querySelector(".result-short div");
-const longResultDiv = document.querySelector(".result-calc div");
+const formElem = document.querySelector("#input-sect-form")
+const inputElem = document.querySelector("#input-sect-number");
+const shortResultDiv = document.querySelector("#result-sect-output-short");
+const longResultDiv = document.querySelector("#result-sect-output-long");
 
-const submitButton = document.querySelector(".form-btn-submit");
-const resetButton = document.querySelector(".form-btn-reset");
-const tukarButton = document.querySelector(".form-btn-tukar");
+const submitButton = document.querySelector("#input-sect-btn-submit");
+const resetButton = document.querySelector("#input-sect-btn-reset");
+const tukarButton = document.querySelector("#input-sect-btn-tukar");
 
-const dropdwnInput = document.querySelector("#temper-input");
-const dropdwnResult = document.querySelector("#temper-result");
+const dropdwnInput = document.querySelector("#input-sect-drop-from");
+const dropdwnResult = document.querySelector("#input-sect-drop-to");
 
-const validationText = document.querySelector(".validation");
+const validationText = document.querySelector("#input-sect-valid");
 
 const navbar = document.querySelector("nav");
-const circleScrollBar = document.querySelector(".circle");
+const circleScrollBar = document.querySelector("#nav-circle");
 
 let temperTypeInput = "C";
 let temperTypeResult = "F";
 
-// -------- event listener --------
+// ------------------------------- EVENT LISTENER -------------------------------
 
 dropdwnInput.addEventListener("change", function () {
     temperTypeInput = dropdwnInput.value;
@@ -54,8 +54,9 @@ window.addEventListener("scroll", function() {
     scrollIndicator()
 })
 
-// -------- function --------
+// ------------------------------- FUNCTION -------------------------------
 
+// FOR VALIDATION AND SHOW THE RESULT
 const formValidAndShow = () => {
     if (inputElem.value) {
         const userValue = inputElem.value;
@@ -70,6 +71,7 @@ const formValidAndShow = () => {
     }
 }
 
+// FOR TEMPERATURE CALCULATION; RETURN INT FOR ANSWER AND STRING FOR CALCULATION DETAIL
 const calculation = (inputVal, temTypeIn, temTypeOut) => {
     const resultObj = {
         shortRes: 0,
@@ -136,16 +138,18 @@ const calculation = (inputVal, temTypeIn, temTypeOut) => {
     return resultObj;
 }
 
-const showResult = (isResetResult = false, shorResult, longResult, temTypeOut) => {
+// FOR SHOWING THE RESULT BASED ON CALCULATION; COULD USE THIS TO RESET THE RESULT
+const showResult = (isResetResult = false, shortResult, longResult, temTypeOut) => {
     if (!isResetResult) {
-        shortResultDiv.innerHTML = `${shorResult}&deg;${temTypeOut}`;
+        shortResultDiv.innerHTML = `${shortResult}&deg;${temTypeOut}`;
         longResultDiv.innerHTML = longResult;
     } else {
-        shortResultDiv.innerHTML = "Hasil akan ditampilkan setelah tombol konversi ditekan";
-        longResultDiv.innerHTML = "Cara kalkulasi akan ditampilkan setelah tombol konversi ditekan";
+        shortResultDiv.innerHTML = "Klik tombol konversi / tekan enter";
+        longResultDiv.innerHTML = "";
     }
 }
 
+// FOR SWITCHING TEMPERATURE TYPE BETWEEN THE INPUT AND OUTPUT DROP DOWN
 const dropdwnSwitcher = () => {
     const dropInputValTemp = dropdwnInput.value;
 
@@ -156,6 +160,7 @@ const dropdwnSwitcher = () => {
     temperTypeResult = dropdwnResult.value;
 }
 
+// FOR SCROLL INDICATOR ON THE NAVBAR
 const scrollIndicator = () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
