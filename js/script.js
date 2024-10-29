@@ -8,11 +8,12 @@ const resetButton = document.querySelector("#input-sect-btn-reset");
 const tukarButton = document.querySelector("#input-sect-btn-tukar");
 
 const dropdwnInput = document.querySelector("#input-sect-drop-from");
-const dropdwnResult = document.querySelector("#input-sect-drop-to");
+const dropdwnOutput = document.querySelector("#input-sect-drop-to");
 
 const validationText = document.querySelector("#input-sect-valid");
+const resultSection = document.querySelector("#result-sect")
 
-const navbar = document.querySelector("nav");
+const navbar = document.querySelector("#nav");
 const circleScrollBar = document.querySelector("#nav-circle");
 
 let temperTypeInput = "C";
@@ -22,11 +23,13 @@ let temperTypeResult = "F";
 
 dropdwnInput.addEventListener("change", function () {
     temperTypeInput = dropdwnInput.value;
+    // dropdownOptionHider(dropdwnInput, dropdwnOutput);
     formValidAndShow();
 })
 
-dropdwnResult.addEventListener("change", function () {
-    temperTypeResult = dropdwnResult.value;
+dropdwnOutput.addEventListener("change", function () {
+    temperTypeResult = dropdwnOutput.value;
+    // dropdownOptionHider(dropdwnOutput, dropdwnInput);
     formValidAndShow();
 })
 
@@ -36,8 +39,9 @@ formElem.addEventListener("submit", function (e) {
 })
 
 submitButton.addEventListener("click", function () {
-    formValidAndShow();
+    formValidAndShow();    
 })
+
 
 resetButton.addEventListener("click", function() {
     inputElem.value = "";
@@ -60,7 +64,7 @@ window.addEventListener("scroll", function() {
 const formValidAndShow = () => {
     if (inputElem.value) {
         const userValue = inputElem.value;
-        const result = calculation(userValue, temperTypeInput, temperTypeResult);
+        const result = calculator(userValue, temperTypeInput, temperTypeResult);
         const shortResult = result.shortRes
         const longResult = result.longRes
 
@@ -72,7 +76,7 @@ const formValidAndShow = () => {
 }
 
 // FOR TEMPERATURE CALCULATION; RETURN INT FOR ANSWER AND STRING FOR CALCULATION DETAIL
-const calculation = (inputVal, temTypeIn, temTypeOut) => {
+const calculator = (inputVal, temTypeIn, temTypeOut) => {
     const resultObj = {
         shortRes: 0,
         longRes: ""
@@ -153,11 +157,23 @@ const showResult = (isResetResult = false, shortResult, longResult, temTypeOut) 
 const dropdwnSwitcher = () => {
     const dropInputValTemp = dropdwnInput.value;
 
-    dropdwnInput.value = dropdwnResult.value;
-    dropdwnResult.value = dropInputValTemp;
+    dropdwnInput.value = dropdwnOutput.value;
+    dropdwnOutput.value = dropInputValTemp;
 
     temperTypeInput = dropdwnInput.value;
-    temperTypeResult = dropdwnResult.value;
+    temperTypeResult = dropdwnOutput.value;
+}
+
+// HIDE ONE OF THE DROPDOWN OPTION WHEN THE OPPOSING DROPDOWN HAS SIMILIAR SELECTED OPTION
+// ISSUE: from ux perspective, this can confuse user
+const dropdownOptionHider = (currentDropdwn, opposingDropdwn) => {
+    const currentDropValue = currentDropdwn.selectedOptions[0].value;
+    for (let i = 0; i < opposingDropdwn.childElementCount; i++) {
+        opposingDropdwn.children[i].style.display = "initial";
+        if (opposingDropdwn.children[i].value == currentDropValue) { 
+            opposingDropdwn.children[i].style.display = "none";
+        }
+    }
 }
 
 // FOR SCROLL INDICATOR ON THE NAVBAR
