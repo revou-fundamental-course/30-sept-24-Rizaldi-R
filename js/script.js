@@ -42,10 +42,8 @@ submitButton.addEventListener("click", function () {
     formValidAndShow();    
 })
 
-
 resetButton.addEventListener("click", function() {
     inputElem.value = "";
-    validationText.style.display = "none";
     showResult(true);
 })
 
@@ -69,13 +67,14 @@ const formValidAndShow = () => {
         const longResult = result.longRes
 
         showResult(false, shortResult, longResult, temperTypeResult);
+        submitIndicator()
         validationText.style.display = "none";
     } else {
         validationText.style.display = "block";
     }
 }
 
-// FOR TEMPERATURE CALCULATION; RETURN INT FOR ANSWER AND STRING FOR CALCULATION DETAIL
+// For temperature calculation; return int for answer and string for calculation detail
 const calculator = (inputVal, temTypeIn, temTypeOut) => {
     const resultObj = {
         shortRes: 0,
@@ -142,7 +141,7 @@ const calculator = (inputVal, temTypeIn, temTypeOut) => {
     return resultObj;
 }
 
-// FOR SHOWING THE RESULT BASED ON CALCULATION; COULD USE THIS TO RESET THE RESULT
+// For showing the result based on calculation; could use this to reset the result
 const showResult = (isResetResult = false, shortResult, longResult, temTypeOut) => {
     if (!isResetResult) {
         shortResultDiv.innerHTML = `${shortResult}&deg;${temTypeOut}`;
@@ -150,10 +149,11 @@ const showResult = (isResetResult = false, shortResult, longResult, temTypeOut) 
     } else {
         shortResultDiv.innerHTML = "Klik tombol konversi / tekan enter";
         longResultDiv.innerHTML = "";
+        validationText.style.display = "none";
     }
 }
 
-// FOR SWITCHING TEMPERATURE TYPE BETWEEN THE INPUT AND OUTPUT DROP DOWN
+// For switching temperature type between the input and output drop down
 const dropdwnSwitcher = () => {
     const dropInputValTemp = dropdwnInput.value;
 
@@ -164,7 +164,7 @@ const dropdwnSwitcher = () => {
     temperTypeResult = dropdwnOutput.value;
 }
 
-// HIDE ONE OF THE DROPDOWN OPTION WHEN THE OPPOSING DROPDOWN HAS SIMILIAR SELECTED OPTION
+// Hide one of the dropdown option when the opposing dropdown has similiar selected option
 // ISSUE: from ux perspective, this can confuse user
 const dropdownOptionHider = (currentDropdwn, opposingDropdwn) => {
     const currentDropValue = currentDropdwn.selectedOptions[0].value;
@@ -176,7 +176,16 @@ const dropdownOptionHider = (currentDropdwn, opposingDropdwn) => {
     }
 }
 
-// FOR SCROLL INDICATOR ON THE NAVBAR
+// Make result section flashes after submiting form
+// TODO: use promise?
+const submitIndicator = () => {
+    resultSection.classList.add("flasher");
+    let timeout = setTimeout(() => {
+        resultSection.classList.remove("flasher")
+    }, 300)
+}
+
+// For scroll indicator on the navbar
 const scrollIndicator = () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;

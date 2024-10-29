@@ -13,7 +13,6 @@
     --link-color: rgb(72, 72, 255);
     --footer-color: #999999;
     --warning-color: rgb(255, 102, 102);
-    /* --scroll: calc(100% - 100px); */
 }
 
 /* element selectors */
@@ -117,6 +116,15 @@ button:hover{
     font-size: 20px;
     font-style: italic;
 }
+
+.flasher {
+    animation-name: flash;
+    animation-duration: 0.3s;
+  }
+  
+  @keyframes flash {
+    0%   {background-color: rgba(190, 190, 190, 0.5);}
+  }
 
 /* ------------- containers ------------- */
 
