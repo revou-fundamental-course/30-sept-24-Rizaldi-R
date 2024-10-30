@@ -1,25 +1,30 @@
-const formElem = document.querySelector("#input-sect-form")
+const formElem = document.querySelector("#input-sect-form");
+const dropdwnInput = document.querySelector("#input-sect-drop-from");
+const dropdwnOutput = document.querySelector("#input-sect-drop-to");
 const inputElem = document.querySelector("#input-sect-number");
 const shortResultDiv = document.querySelector("#result-sect-output-short");
 const longResultDiv = document.querySelector("#result-sect-output-long");
+const validationText = document.querySelector("#input-sect-valid");
 
 const submitButton = document.querySelector("#input-sect-btn-submit");
 const resetButton = document.querySelector("#input-sect-btn-reset");
 const tukarButton = document.querySelector("#input-sect-btn-tukar");
 
-const dropdwnInput = document.querySelector("#input-sect-drop-from");
-const dropdwnOutput = document.querySelector("#input-sect-drop-to");
-
-const validationText = document.querySelector("#input-sect-valid");
 const resultSection = document.querySelector("#result-sect")
 
-const navbar = document.querySelector("#nav");
+const navbar = document.querySelector("#nav-group");
 const circleScrollBar = document.querySelector("#nav-circle");
+const darkThemeCheckbox = document.querySelector("#nav-dark-toggler-check");
 
 let temperTypeInput = "C";
 let temperTypeResult = "F";
 
 // ------------------------------- EVENT LISTENER -------------------------------
+
+// ISSUE: if user prefered theme is dark, the page flashes whenever user reload the page
+addEventListener("load", () => {
+    themeChecker()
+});
 
 dropdwnInput.addEventListener("change", function () {
     temperTypeInput = dropdwnInput.value;
@@ -185,16 +190,23 @@ const submitIndicator = () => {
     }, 300)
 }
 
+// Check the user prefered theme
+const themeChecker = () => {
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const isDarkMode = mql.matches;
+    if (isDarkMode) { darkThemeCheckbox.checked = true; }
+}
+
 // For scroll indicator on the navbar
 const scrollIndicator = () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    // total height - viewport height
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
 
-    const navHeightLeft = navbar.offsetHeight - circleScrollBar.offsetHeight;
-    const navHLPercent = (navHeightLeft/navbar.offsetHeight) * 100;
-
-    const navHBasedScrolled = (navHLPercent / 100) * scrolled;
-
+    const navHeight = navbar.offsetHeight - circleScrollBar.offsetHeight;
+    const navHPercent = (navHeight/navbar.offsetHeight) * 100;
+    const navHBasedScrolled = (navHPercent / 100) * scrolled;
+    
     circleScrollBar.style.top = navHBasedScrolled + "%";
 }

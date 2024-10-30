@@ -1,30 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --global-gap: 15px;
+    --font-size-root: 62.5%;
+    --font-size: 1.6rem;
+    --global-gap: 1.5rem; /* 15px */
     --main-gap: 3rem;
-    --section-gap: 55px;
-    --input-padding: 10px;
-    --btn-height: 29px;
+    --section-gap: 5.5rem; /* 55px */
+    --input-padding: 1rem; /* 10px */
+    --btn-height: 2.9rem; /* 29px */
+    --toggler-width: 2rem; /* 20px */
+    --warning-color: rgb(255, 102, 102);
+    --footer-color: #999999;
+    /* for light or dark theme */
+    --darkmode: 0;
     --global-border: #B4B4B4 solid 1px;
     --heading-color: #464646;
     --text-color: #5C5C5C;
     --line-color: #B4B4B4;
     --link-color: rgb(72, 72, 255);
-    --footer-color: #999999;
-    --warning-color: rgb(255, 102, 102);
+    --select-bg-color: #FFFCFC;
+    --input-bg-color: #EAEAEA;
+    --btn-bg-color: #FFFCFC;
+    --btn-bg-hver-color: #F1F1F1;
+    --submit-bg-color: #2339FC;
+    --submit-bg-hver-color: #0017e7;
+    --result-bg-color: #D9D9D94D;
+    --detail-row-hver-color: rgba(227, 227, 227, 0.35);
+    --nav-bg-color: linear-gradient(to bottom right, #E5EBFFE6, #E6EDFF80);
+    --nav-border-color: #D2CBFF;
+    --toggler-bg-color: #E2E2E2;
+    /* ISSUE: cant transition from dark/light mode using linier gradient */
+    --backgorund-color: no-repeat linear-gradient(#ECFCFF, #FFEBFE);
 }
 
 /* element selectors */
 
+:where(html) {
+    container-name: root;
+    container-type: normal;
+}
+
 html {
     scroll-behavior: smooth;
     font-family: "poppins", sans-serif;
-    font-size: 16px;
+    font-size: var(--font-size-root);
     text-wrap: wrap;
-    line-height: 1.6rem;
-    color: var(--text-color);
-    background: no-repeat linear-gradient(#ECFCFF, #FFEBFE);
     margin: 0;
 }
 
@@ -33,22 +53,27 @@ body, h1, h4, p {
 }
 
 body {
-    margin: 0 calc(var(--global-gap) * 2);
+    font-size: var(--font-size);
+    color: var(--text-color);
+    background: var(--backgorund-color);
+    padding: 0 calc(var(--global-gap) * 2);
+    transition: 0.4s;
 }
 
 h1 {
-    font-size: 45px;
+    font-size: 4.5rem;
     font-weight: 600;
-    line-height: 45px;
+    line-height: 4.5rem;
 }
 
 h4 {
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
 }
 
 a {
+    font-size: var(--font-size);
     color: var(--link-color);
 }
 
@@ -58,27 +83,28 @@ a:hover {
 
 select {
     -webkit-appearance: none;
-    appearance: none;
+    -moz-appearance: none;
+         appearance: none;
     font-family: "poppins", sans-serif;
-    font-size: 1rem;
+    font-size: var(--font-size);
     font-weight: normal;
     color: var(--text-color);
     border: var(--global-border);
-    background-color: #FFFCFC;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='gray'><path d='M481-362 255-588l38-38 188 188 188-188 38 38-226 226Z'/></svg>");
+    background-color: var(--select-bg-color);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='2rem' viewBox='0 -960 960 960' width='2rem' fill='gray'><path d='M481-362 255-588l38-38 188 188 188-188 38 38-226 226Z'/></svg>");
     background-repeat: no-repeat;
     background-position-x: calc(100% - var(--input-padding));
     background-position-y: center;
-    height: 29px;
+    height: 2.9rem;
     padding: 0 var(--input-padding);
 }
 
 input {
-    font-size: 1rem;
+    font-size: var(--font-size);
     color: var(--text-color);
-    background-color: #EAEAEA;
+    background-color: var(--input-bg-color);
     border: var(--global-border);
-    height: 27px;
+    height: 2.7rem;
     padding: 0 var(--input-padding);
 }
 
@@ -88,23 +114,23 @@ button {
     text-align: center;
     font-weight: 500;
     line-height: var(--btn-height);
-    background-color: #FFFCFC;
+    background-color: var(--btn-bg-color);
     border: var(--global-border);
     border-radius: 8px;
     height: var(--btn-height);
-    padding: 0 13px;
+    padding: 0 1.3rem;
 }
 
 button:hover{
     cursor: pointer;
-    background-color: #f1f1f1;
+    background-color: var(--btn-bg-hver-color);
 }
 
 /* ------------- utils ------------- */
 
 
 .heading-color {
-    color: #464646
+    color: var(--heading-color);
 }
 
 .margin-btm-global {
@@ -113,23 +139,29 @@ button:hover{
 
 .temper-style {
     font-family: math;
-    font-size: 20px;
+    font-size: 2rem;
     font-style: italic;
 }
 
 .flasher {
-    animation-name: flash;
-    animation-duration: 0.3s;
+    -webkit-animation-name: flash;
+            animation-name: flash;
+    -webkit-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+  }
+  
+  @-webkit-keyframes flash {
+    0%   {background-color: rgba(250, 250, 250, 0.4);}
   }
   
   @keyframes flash {
-    0%   {background-color: rgba(190, 190, 190, 0.5);}
+    0%   {background-color: rgba(250, 250, 250, 0.4);}
   }
 
 /* ------------- containers ------------- */
 
 main {
-    width: 616px;
+    width: 61.6rem;
     margin: var(--main-gap) 0;
     border-right: var(--main-border);
 }
@@ -146,12 +178,12 @@ section {
 /* ------------- form content ------------- */
 
 .input-sect {
-    max-width: 345px;
+    max-width: 34.5rem;
 }
 
 .input-sect-group {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 75px);
+    grid-template-columns: repeat(auto-fit, 7.5rem);
     gap: var(--global-gap);
     align-items: center;
     margin: var(--global-gap) 0;
@@ -168,14 +200,14 @@ section {
 .input-sect-btn-submit {
     grid-column: 1 / span 2;
     color: white;
-    background-color: #2339FC;
+    background-color: var(--submit-bg-color);
     border: none;
-    width: 100px;
+    width: 10rem;
 }
 
 .input-sect-btn-submit:hover{
     cursor: pointer;
-    background-color: #0017e7;
+    background-color: var(--submit-bg-hver-color);
 }
 
 .input-sect-valid {
@@ -186,10 +218,10 @@ section {
 /* ------------- result ------------- */
 
 .result-sect {
-    background-color: #D9D9D94D;
+    background-color: var(--result-bg-color);
     border: var(--global-border);
     border-radius: 5px;
-    max-width: 495px;
+    max-width: 49.5rem;
     padding: var(--global-gap) var(--global-gap);
 }
 
@@ -199,7 +231,7 @@ section {
 }
 
 .result-sect-label {
-    width: 121px;
+    width: 12.1rem;
 }
 
 .result-sect-colon {
@@ -216,11 +248,11 @@ section {
     border-top: var(--global-border);
     padding-top: var(--section-gap);
     margin: 0;
-    max-width: 525px;
+    max-width: 52.5rem;
 }
 
 .detail-sect-subtitle {
-    margin-top: 30px;
+    margin-top: 3rem;
     margin-bottom: var(--global-gap);
 }
 
@@ -234,7 +266,7 @@ section {
     flex-wrap: wrap;
     align-items: center;
     border-top: var(--global-border);
-    padding: 10px var(--global-gap);
+    padding: 1rem var(--global-gap);
 }
 
 .detail-sect-row:first-child {
@@ -242,7 +274,7 @@ section {
 }
 
 .detail-sect-row:hover {
-    background-color: #D9D9D94D;
+    background-color: var(--detail-row-hver-color);
 }
 
 .detail-sect-row > span {
@@ -252,43 +284,126 @@ section {
 /* ------------- footer ------------- */
 
 footer {
-    font-size: 14px;
+    font-size: 1.4rem;
     text-align: center;
     color: var(--footer-color);
-    margin: var(--global-gap) 0;
+    padding: var(--global-gap) 0;
 }
 
 /* ------------- navigation ------------- */
 
 nav {
+    position: -webkit-sticky;
     position: sticky;
     top: var(--main-gap);
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
-    width: 255px;
+    width: 25.5rem;
     margin-left: var(--global-gap);
+}
+
+.nav-group {
+    position: relative;
 }
 
 .nav-circle {
     position: absolute;
-    height: 75px;
-    width: 75px;
+    height: 7.5rem;
+    width: 7.5rem;
     background-color: blue;
     border-radius: 50%;
     display: inline-block;
 }
 
-.nav-list-group {
-    height: 195px;
-    padding: 30px;
-    border: #D2CBFFCC solid 2px;
-    border-radius: 25px;
-    background: linear-gradient(to bottom right, #E5EBFFE6, #E6EDFF80);
+.nav-list {
+    height: 18.5rem;
+    padding: 3rem;
+    border: var(--nav-border-color) solid 2px;
+    border-radius: 2.5rem;
+    background: var(--nav-bg-color);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
 
-.nav-list-group a {
+.nav-list a {
     display: block;
+}
+
+.nav-dark {
+    display: flex;
+    align-items: center;
+}
+
+.nav-dark-toggler {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: calc(var(--toggler-width) * 2);
+    height: 2rem;
+}
+
+.nav-dark-toggler-check {
+    cursor: pointer;
+    z-index: 1;
+    width: 100%;
+    opacity: 0;
+}
+
+.nav-dark-toggler-visual {
+    position: absolute;
+    background-color: var(--toggler-bg-color);
+    border: var(--global-border);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    margin-left: 1rem;
+}
+  
+.nav-dark-toggler-visual:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: var(--toggler-width);
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px #787878;
+    transition: 0.4s;
+}
+
+.nav-dark-toggler-check:checked + 
+.nav-dark-toggler-visual:before {
+    transform: translateX(var(--toggler-width));
+    background-color: #3ea6ff;
+}
+
+/* for dark/light toggle */
+html:has(#nav-dark-toggler-check:checked) { --darkmode: 1; }
+
+@media (prefers-color-scheme: dark) {
+    html { --darkmode: 1; }
+}
+
+@container root style(--darkmode: 1) {
+    body {
+        --global-border: #616161 solid 1px;
+        --heading-color: #E7E7E7;
+        --text-color: #CACACA;
+        --line-color: #616161;
+        --link-color: #6ED6FF;
+        --select-bg-color: #2E3C44;
+        --input-bg-color: #3A484F;
+        --btn-bg-color: #3A484F;
+        --btn-bg-hver-color: #2c383e;
+        --submit-bg-color: #536BDA;
+        --submit-bg-hver-color: #455bc0;
+        --result-bg-color: #2F3D4480;
+        --detail-row-hver-color: rgba(227, 227, 227, 0.05);
+        --nav-bg-color: #2F3C43CC;
+        --nav-border-color: #3B4B54;
+        --toggler-bg-color: #2B3940;
+        --backgorund-color: no-repeat linear-gradient(#202B31, #29363d);
+    }
 }
 
 /* for tablet */
@@ -305,7 +420,7 @@ nav {
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 4rem;
         width: 75vw;
     }
 
@@ -322,7 +437,7 @@ nav {
     }
 
     .input-sect-btn-submit {
-        height: 40px;
+        height: 4rem;
         width: auto;
         grid-column: 2 / span 2;
     }
