@@ -14,7 +14,7 @@ const resultSection = document.querySelector("#result-sect")
 
 const navbar = document.querySelector("#nav-group");
 const circleScrollBar = document.querySelector("#nav-circle");
-const darkThemeCheckbox = document.querySelector("#nav-dark-toggler-check");
+const darkThemeCheckbox = document.querySelector("#nav-toggler-dark-check");
 
 let temperTypeInput = "C";
 let temperTypeResult = "F";

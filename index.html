@@ -188,11 +188,31 @@
                     <a href="#detail-sect">kembali ke penjelasan</a>
                 </div>
             </div>
-            <div class="nav-dark">
-                <label for="nav-dark-toggler-check">Mode gelap</label>
-                <span class="nav-dark-toggler">
-                    <input class="nav-dark-toggler-check" id="nav-dark-toggler-check" type="checkbox">
-                    <span class="nav-dark-toggler-visual"></span>
+            <div class="nav-toggler-group">
+                <span class="nav-toggler-title">Ukuran text</span>
+                <fieldset class="nav-toggler-scaler-group" id="colorScheme">
+                    <label> 
+                        <!-- 16 -->
+                        <input type="radio" name="radio-font" class="radio-font-regular" checked>
+                        F
+                    </label>
+                    <label>
+                        <!-- 20 -->
+                        <input type="radio" name="radio-font" class="radio-font-large">
+                        F
+                    </label>
+                    <label>
+                        <!-- 24 -->
+                        <input type="radio" name="radio-font" class="radio-font-very-large">
+                        F
+                    </label>
+                </fieldset>
+            </div>
+            <div class="nav-toggler-group">
+                <label class="nav-toggler-title" for="nav-toggler-dark-check">Mode gelap</label>
+                <span class="nav-toggler-dark">
+                    <input class="nav-toggler-dark-check" id="nav-toggler-dark-check" type="checkbox">
+                    <span class="nav-toggler-dark-visual"></span>
                 </span>
             </div>
         </nav>
