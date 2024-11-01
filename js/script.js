@@ -29,22 +29,22 @@ addEventListener("load", () => {
 dropdwnInput.addEventListener("change", function () {
     temperTypeInput = dropdwnInput.value;
     // dropdownOptionHider(dropdwnInput, dropdwnOutput);
-    formValidAndShow();
+    formValidator();
 })
 
 dropdwnOutput.addEventListener("change", function () {
     temperTypeResult = dropdwnOutput.value;
     // dropdownOptionHider(dropdwnOutput, dropdwnInput);
-    formValidAndShow();
+    formValidator();
 })
 
 formElem.addEventListener("submit", function (e) {
     e.preventDefault();
-    formValidAndShow();
+    formValidator();
 })
 
 submitButton.addEventListener("click", function () {
-    formValidAndShow();    
+    formValidator();    
 })
 
 resetButton.addEventListener("click", function() {
@@ -54,7 +54,7 @@ resetButton.addEventListener("click", function() {
 
 tukarButton.addEventListener("click", function () {
     dropdwnSwitcher();
-    formValidAndShow();
+    formValidator();
 })
 
 window.addEventListener("scroll", function() {
@@ -64,7 +64,7 @@ window.addEventListener("scroll", function() {
 // ------------------------------- FUNCTION -------------------------------
 
 // FOR VALIDATION AND SHOW THE RESULT
-const formValidAndShow = () => {
+const formValidator = () => {
     if (inputElem.value) {
         const userValue = inputElem.value;
         const result = calculator(userValue, temperTypeInput, temperTypeResult);
@@ -142,7 +142,6 @@ const calculator = (inputVal, temTypeIn, temTypeOut) => {
 
     resultObj.shortRes = Math.round(shortR * 10000) / 10000;
     resultObj.longRes = longR;
-
     return resultObj;
 }
 
@@ -190,7 +189,7 @@ const submitIndicator = () => {
     }, 300)
 }
 
-// Check the user prefered theme
+// Check the user prefered theme then toggle the dark mode toggler
 const themeChecker = () => {
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     const isDarkMode = mql.matches;

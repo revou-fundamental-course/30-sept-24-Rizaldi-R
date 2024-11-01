@@ -479,13 +479,35 @@ html:has(.radio-font-very-large:checked) {
 
 /* ------------- for dark/light toggler ------------- */
 
-html:has(#nav-toggler-dark-check:checked) { --darkmode: 1; }
-
-@media (prefers-color-scheme: dark) {
-    html { --darkmode: 1; }
+html:has(#nav-toggler-dark-check:checked) { 
+    --darkmode: 1;
+    --global-border: #616161 solid 1px;
+    --heading-color: #E7E7E7;
+    --text-color: #CACACA;
+    --line-color: #616161;
+    --link-color: #6ED6FF;
+    --select-bg-color: #2E3C44;
+    --input-bg-color: #3A484F;
+    --btn-bg-color: #3A484F;
+    --btn-bg-hovr-color: #2c383e;
+    --submit-bg-color: #536BDA;
+    --submit-bg-hovr-color: #3f55b7;
+    --result-bg-color: #2F3D4480;
+    --detail-row-hovr-color: rgba(227, 227, 227, 0.05);
+    --nav-bg-color: #2F3C43CC;
+    --nav-border-color: #3B4B54;
+    --radio-bg-color: #3A484F;
+    --radio-bg-hovr-color: #2B3940;
+    --toggler-bg-color: #2B3940;
+    --bg-dark-opacity: 1;
 }
 
-@container root style(--darkmode: 1) {
+/* @media (prefers-color-scheme: dark) {
+    html { --darkmode: 1; }
+} */
+
+/* ISSUE: @container using style isnt yet supported on firefox*/
+/* @container root style(--darkmode: 1) {
     body {
         --global-border: #616161 solid 1px;
         --heading-color: #E7E7E7;
@@ -507,13 +529,10 @@ html:has(#nav-toggler-dark-check:checked) { --darkmode: 1; }
         --toggler-bg-color: #2B3940;
         --bg-dark-opacity: 1;
     }
-}
+} */
 
 /* ------------- for tablet ------------- */
 @media only screen and (max-width: 768px) {
-    /* nav {
-        display: none;
-    } */
     .container {
         flex-wrap: wrap;
     }
